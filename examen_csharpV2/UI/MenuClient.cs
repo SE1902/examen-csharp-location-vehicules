@@ -17,6 +17,7 @@ public class MenuClient
             Console.WriteLine("1) Ajouter un client");
             Console.WriteLine("2) Afficher un client");
             Console.WriteLine("3) Supprimer un client");
+            Console.WriteLine("4. Modifier un client");
             Console.WriteLine("0) Retour");
             Console.WriteLine("Votre choix");
             
@@ -32,6 +33,9 @@ public class MenuClient
                     break;
                 case "3":
                     SupprimerClient();
+                    break;
+                case "4":
+                    ModifierClient();
                     break;
                 case "0":
                     continuer = false;
@@ -134,5 +138,51 @@ public class MenuClient
         DataStore.Clients.RemoveAt(index);
         Console.WriteLine($"Client {client.Nom} {client.Prenom} supprimé avec succès !");
 
+    }
+    
+    private void ModifierClient()
+    {
+        Console.WriteLine("\n=== MODIFIER UN CLIENT ===");
+
+        if (DataStore.Clients.Count == 0)
+        {
+            Console.WriteLine("Aucun client enregistré.");
+            return;
+        }
+
+        for (int i = 0; i < DataStore.Clients.Count; i++)
+        {
+            Console.WriteLine($"{i + 1}. {DataStore.Clients[i]}");
+        }
+
+        Console.Write("Choisissez un client à modifier (numéro) : ");
+        string saisie = Console.ReadLine();
+
+        int index;
+        if (!int.TryParse(saisie, out index))
+        {
+            Console.WriteLine("Entrée invalide !");
+            return;
+        }
+        index -= 1;
+        if (index < 0 || index >= DataStore.Clients.Count)
+        {
+            Console.WriteLine("Numéro invalide !");
+            return;
+        }
+
+        Client client = DataStore.Clients[index];
+
+        Console.WriteLine($"Nom actuel : {client.Nom}");
+        Console.Write("Nouveau nom (Enter pour garder) : ");
+        string nouveauNom = Console.ReadLine();
+        if (nouveauNom != "") client.Nom = nouveauNom;
+
+        Console.WriteLine($"Prénom actuel : {client.Prenom}");
+        Console.Write("Nouveau prénom (Enter pour garder) : ");
+        string nouveauPrenom = Console.ReadLine();
+        if (nouveauPrenom != "") client.Prenom = nouveauPrenom;
+
+        Console.WriteLine($"Client modifié avec succès ! {client}");
     }
 }
