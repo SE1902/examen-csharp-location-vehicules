@@ -12,3 +12,4 @@
 /Users/souhailezzerqti/Desktop/csharp2/examen_csharpV2/examen_csharpV2/obj/Debug/net10.0/examen_csharpV2.pdb
 /Users/souhailezzerqti/Desktop/csharp2/examen_csharpV2/examen_csharpV2/obj/Debug/net10.0/examen_csharpV2.genruntimeconfig.cache
 /Users/souhailezzerqti/Desktop/csharp2/examen_csharpV2/examen_csharpV2/obj/Debug/net10.0/ref/examen_csharpV2.dll
+/Users/souhailezzerqti/Desktop/csharp2/examen_csharpV2/examen_csharpV2/obj/Debug/net10.0/examen_csharpV2.sourcelink.json
