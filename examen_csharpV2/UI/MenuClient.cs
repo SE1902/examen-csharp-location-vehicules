@@ -14,11 +14,11 @@ public class MenuClient
         while (continuer)
         {
             Console.WriteLine("\n=== MENU CLIENTS ===");
-            Console.WriteLine("1) Ajouter un client");
-            Console.WriteLine("2) Afficher un client");
-            Console.WriteLine("3) Supprimer un client");
-            Console.WriteLine("4) Modifier un client");
-            Console.WriteLine("0) Retour");
+            Console.WriteLine("1. Ajouter un client");
+            Console.WriteLine("2. Afficher un client");
+            Console.WriteLine("3. Supprimer un client");
+            Console.WriteLine("4. Modifier un client");
+            Console.WriteLine("0. Retour");
             Console.WriteLine("Votre choix");
             
             string choix = Console.ReadLine();

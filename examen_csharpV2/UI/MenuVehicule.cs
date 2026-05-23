@@ -15,6 +15,7 @@ public class MenuVehicule
             Console.WriteLine("1. Ajouter un véhicule");
             Console.WriteLine("2. Afficher tous les véhicules");
             Console.WriteLine("3. Supprimer un véhicule");
+            Console.WriteLine("4. Modifier un véhicule");
             Console.WriteLine("0. Retour");
             Console.Write("Votre choix : ");
 
@@ -30,6 +31,9 @@ public class MenuVehicule
                     break;
                 case "3":
                     SupprimerVehicule();
+                    break;
+                case "4":
+                    ModifierVehicule();
                     break;
                 case "0":
                     continuer = false;
@@ -212,6 +216,75 @@ public class MenuVehicule
             Vehicule vehicule = DataStore.Vehicules[index];
             DataStore.Vehicules.RemoveAt(index);
             Console.WriteLine($"Véhicule {vehicule.Modele} supprimé avec succès !");
+        }
+        
+        private void ModifierVehicule()
+        {
+            Console.WriteLine("\n=== MODIFIER UN VEHICULE ===");
+
+            if (DataStore.Vehicules.Count == 0)
+            {
+                Console.WriteLine("Aucun véhicule enregistré.");
+                return;
+            }
+
+            for (int i = 0; i < DataStore.Vehicules.Count; i++)
+            {
+                Console.WriteLine($"{i + 1}. {DataStore.Vehicules[i]}");
+            }
+
+            Console.Write("Choisissez un véhicule à modifier (numéro) : ");
+            string saisie = Console.ReadLine();
+
+            int index;
+            if (!int.TryParse(saisie, out index))
+            {
+                Console.WriteLine("Entrée invalide !");
+                return;
+            }
+            index -= 1;
+            if (index < 0 || index >= DataStore.Vehicules.Count)
+            {
+                Console.WriteLine("Numéro invalide !");
+                return;
+            }
+
+            Vehicule vehicule = DataStore.Vehicules[index];
+
+            Console.WriteLine($"Modèle actuel : {vehicule.Modele}");
+            Console.Write("Nouveau modèle (Enter pour garder) : ");
+            string nouveauModele = Console.ReadLine();
+            if (nouveauModele != "") vehicule.Modele = nouveauModele;
+
+            Console.WriteLine($"Prix journalier actuel : {vehicule.PrixJournalier}€");
+            Console.Write("Nouveau prix (Enter pour garder) : ");
+            string nouveauPrix = Console.ReadLine();
+            if (nouveauPrix != "")
+            {
+                double prix;
+                if (!double.TryParse(nouveauPrix, out prix))
+                {
+                    Console.WriteLine("Prix invalide !");
+                    return;
+                }
+                vehicule.PrixJournalier = prix;
+            }
+
+            Console.WriteLine($"Kilométrage actuel : {vehicule.Kilometrage}km");
+            Console.Write("Nouveau kilométrage (Enter pour garder) : ");
+            string nouveauKm = Console.ReadLine();
+            if (nouveauKm != "")
+            {
+                double km;
+                if (!double.TryParse(nouveauKm, out km))
+                {
+                    Console.WriteLine("Kilométrage invalide !");
+                    return;
+                }
+                vehicule.Kilometrage = km;
+            }
+
+            Console.WriteLine($"Véhicule modifié avec succès ! {vehicule}");
         }
 }
 
