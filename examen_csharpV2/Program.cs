@@ -3,6 +3,7 @@ using examen_csharpV2.Models;
 using examen_csharpV2.Service;
 
 // Données de test - Véhicules
+// Pré-chargement de véhicules de différents types pour faciliter les tests
 DataStore.Vehicules.Add(new Voiture("1-ABC-123", "Renault Clio", 45, 15000));
 DataStore.Vehicules.Add(new Voiture("2-DEF-456", "Peugeot 308", 55, 23000));
 DataStore.Vehicules.Add(new Moto("3-GHI-789", "Honda CBR", 60, 8000, 600));
@@ -13,17 +14,16 @@ DataStore.Vehicules.Add(new Limousine("7-STU-901", "Lincoln Town Car", 200, 5000
 DataStore.Vehicules.Add(new Autobus("8-VWX-234", "Mercedes Sprinter", 180, 30000, 20));
 
 // Données de test - Clients
-DataStore.Clients.Add(new Client("Dupont", "Jean", "B"));
-DataStore.Clients.Add(new Client("Martin", "Sophie", "A"));
-DataStore.Clients.Add(new Client("Durant", "Paul", "C"));
+// Pré-chargement de clients avec différents types de permis pour faciliter les tests
+DataStore.Clients.Add(new Client("Dupont", "Jean", "B"));   // Permis B -> peut louer une voiture
+DataStore.Clients.Add(new Client("Martin", "Sophie", "A")); // Permis A -> peut louer une moto
+DataStore.Clients.Add(new Client("Durant", "Paul", "C"));   // Permis C -> peut louer un camion
 
 // Données de test - Chauffeurs
+// Pré-chargement de chauffeurs disponibles pour les véhicules qui l'exigent
 DataStore.Chauffeurs.Add(new Chauffeur("Leblanc", "Marc"));
 DataStore.Chauffeurs.Add(new Chauffeur("Leroy", "Julie"));
 
-
-
-
-
+// Lancement du menu principal de l'application
 MenuPrincipal menuPrincipal = new MenuPrincipal();
 menuPrincipal.Afficher();
