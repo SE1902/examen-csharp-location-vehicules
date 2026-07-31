@@ -1,12 +1,18 @@
 namespace examen_csharpV2.UI;
 
-
 using examen_csharpV2.Service;
 using examen_csharpV2.Models;
 
-
+/// <summary>
+/// Classe représentant le menu de gestion des clients.
+/// Permet d'ajouter, afficher, supprimer et modifier les clients de l'agence.
+/// </summary>
 public class MenuClient
 {
+    /// <summary>
+    /// Affiche le menu des clients et gère la navigation.
+    /// La boucle continue jusqu'à ce que l'utilisateur choisisse de revenir (0).
+    /// </summary>
     public void Afficher()
     {
         bool continuer = true;
@@ -45,14 +51,18 @@ public class MenuClient
                     break;
             }
         }    
-        
     }
 
+    /// <summary>
+    /// Permet d'ajouter un nouveau client dans le DataStore.
+    /// Demande le nom, prénom et le type de permis du client.
+    /// Utilise un switch expression pour convertir le choix en type de permis.
+    /// </summary>
     private void AjouterClient()
     {
         Console.WriteLine("\n=== AJOUTER UN CLIENT ===");
         
-        Console.Write("nom (0 pour annuler) : ");
+        Console.Write("Nom (0 pour annuler) : ");
         string nom = Console.ReadLine();
         if (nom == "0") return;
         
@@ -80,11 +90,15 @@ public class MenuClient
             _ => "Aucun"
         };
         
-        Client client = new Client(nom,  prenom, numPermis);
+        Client client = new Client(nom, prenom, numPermis);
         DataStore.Clients.Add(client);
         Console.WriteLine($"Client {nom} {prenom} ajouté avec succès !");
     } 
 
+    /// <summary>
+    /// Affiche la liste de tous les clients enregistrés dans le DataStore.
+    /// Utilise la méthode ToString() de chaque client pour l'affichage.
+    /// </summary>
     private void AfficherClients()
     {
         Console.WriteLine("\n=== LISTE DES CLIENTS ===");
@@ -101,6 +115,11 @@ public class MenuClient
         }
     }
 
+    /// <summary>
+    /// Permet de supprimer un client du DataStore.
+    /// Affiche la liste des clients et demande le numéro à supprimer.
+    /// Utilise TryParse pour valider l'entrée.
+    /// </summary>
     private void SupprimerClient()
     {
         Console.WriteLine("\n=== SUPPRIMER UN CLIENT ===");
@@ -133,13 +152,16 @@ public class MenuClient
             return;
         }
 
-
         Client client = DataStore.Clients[index];
         DataStore.Clients.RemoveAt(index);
         Console.WriteLine($"Client {client.Nom} {client.Prenom} supprimé avec succès !");
-
     }
     
+    /// <summary>
+    /// Permet de modifier les informations d'un client existant.
+    /// L'utilisateur peut modifier le nom et le prénom.
+    /// Appuyer sur Enter sans saisir de valeur conserve la valeur actuelle.
+    /// </summary>
     private void ModifierClient()
     {
         Console.WriteLine("\n=== MODIFIER UN CLIENT ===");
@@ -158,8 +180,7 @@ public class MenuClient
         Console.Write("Choisissez un client à modifier (numéro) : ");
         string saisie = Console.ReadLine();
 
-        int index;
-        if (!int.TryParse(saisie, out index))
+        if (!int.TryParse(saisie, out int index))
         {
             Console.WriteLine("Entrée invalide !");
             return;

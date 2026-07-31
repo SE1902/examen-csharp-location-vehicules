@@ -3,9 +3,16 @@ namespace examen_csharpV2.UI;
 using examen_csharpV2.Models;
 using examen_csharpV2.Service;
 
-
+/// <summary>
+/// Classe représentant le menu de gestion des contrôles techniques.
+/// Permet d'ajouter, afficher et vérifier les contrôles techniques des véhicules.
+/// </summary>
 public class MenuControletechnique
 {
+    /// <summary>
+    /// Affiche le menu des contrôles techniques et gère la navigation.
+    /// La boucle continue jusqu'à ce que l'utilisateur choisisse de revenir (0).
+    /// </summary>
     public void Afficher()
     {
         bool continuer = true;
@@ -40,9 +47,13 @@ public class MenuControletechnique
                     break;
             }
         }
-
     }
 
+    /// <summary>
+    /// Permet d'ajouter un nouveau contrôle technique pour un véhicule.
+    /// Le prochain contrôle est automatiquement planifié 2 ans après.
+    /// Demande les observations et si le contrôle est valide ou non.
+    /// </summary>
     private void AjouterControle()
     {
         Console.WriteLine("\n=== AJOUTER UN CONTRÔLE TECHNIQUE ===");
@@ -62,9 +73,7 @@ public class MenuControletechnique
         string saisie = Console.ReadLine();
         if (saisie == "0") return;
 
-
-        int index;
-        if (!int.TryParse(saisie, out index))
+        if (!int.TryParse(saisie, out int index))
         {
             Console.WriteLine("Entrée invalide !");
             return;
@@ -86,12 +95,16 @@ public class MenuControletechnique
         string reponse = Console.ReadLine().ToLower();
         bool estValide = reponse == "oui";
 
+        // Créer le contrôle et planifier automatiquement le prochain dans 2 ans
         ControleTechnique controle = new ControleTechnique(vehicule, observations, estValide);
         DataStore.ControleTechnique.Add(controle);
-        Console.WriteLine(
-            $"Contrôle technique ajouté ! Prochain contrôle le : {controle.DateProchainControle.ToShortDateString()}");
+        Console.WriteLine($"Contrôle technique ajouté ! Prochain contrôle le : {controle.DateProchainControle.ToShortDateString()}");
     }
 
+    /// <summary>
+    /// Affiche la liste de tous les contrôles techniques enregistrés dans le DataStore.
+    /// Utilise la méthode ToString() de chaque contrôle pour l'affichage.
+    /// </summary>
     private void AfficherControles()
     {
         Console.WriteLine("\n=== LISTE DES CONTRÔLES TECHNIQUES ===");
@@ -108,11 +121,16 @@ public class MenuControletechnique
         }
     }
 
+    /// <summary>
+    /// Vérifie les contrôles techniques à renouveler dans le prochain mois.
+    /// Affiche une alerte pour chaque véhicule dont le contrôle expire bientôt.
+    /// </summary>
     private void VerifierControles()
     {
         Console.WriteLine("\n=== CONTRÔLES À RENOUVELER ===");
         bool found = false;
 
+        // Vérifier si le prochain contrôle est dans moins d'un mois
         foreach (var controle in DataStore.ControleTechnique)
         {
             if (controle.DateProchainControle <= DateTime.Now.AddMonths(1))
@@ -127,4 +145,4 @@ public class MenuControletechnique
             Console.WriteLine("Aucun contrôle à renouveler dans le prochain mois !");
         }
     }
-}    
+}

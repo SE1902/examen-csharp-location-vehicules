@@ -3,8 +3,16 @@ namespace examen_csharpV2.UI;
 using examen_csharpV2.Models;
 using examen_csharpV2.Service;
 
+/// <summary>
+/// Classe représentant le menu de gestion des réparations.
+/// Permet d'afficher et de terminer les réparations des véhicules endommagés.
+/// </summary>
 public class MenuReparation
 {
+    /// <summary>
+    /// Affiche le menu des réparations et gère la navigation.
+    /// La boucle continue jusqu'à ce que l'utilisateur choisisse de revenir (0).
+    /// </summary>
     public void Afficher()
     {
         bool continuer = true;
@@ -37,6 +45,10 @@ public class MenuReparation
         }
     }
 
+    /// <summary>
+    /// Affiche la liste de toutes les réparations enregistrées dans le DataStore.
+    /// Utilise la méthode ToString() de chaque réparation pour l'affichage.
+    /// </summary>
     private void AfficherReparation()
     {
         Console.WriteLine("\n=== LISTE DES RÉPARATIONS ===");
@@ -53,9 +65,16 @@ public class MenuReparation
         }
     }
 
+    /// <summary>
+    /// Permet de terminer une réparation en cours.
+    /// Une fois la réparation terminée, le véhicule redevient automatiquement disponible.
+    /// Filtre uniquement les réparations en cours pour l'affichage.
+    /// </summary>
     private void TerminerReparation()
     {
         Console.WriteLine("\n=== TERMINER UNE RÉPARATION ===");
+
+        // Filtrer uniquement les réparations en cours
         List<Reparation> reparationsEnCours = new List<Reparation>();
         for (int i = 0; i < DataStore.Reparation.Count; i++)
         {
@@ -76,8 +95,7 @@ public class MenuReparation
         string saisie = Console.ReadLine();
         if (saisie == "0") return;
 
-        int index;
-        if (!int.TryParse(saisie, out index))
+        if (!int.TryParse(saisie, out int index))
         {
             Console.WriteLine("Entrée invalide !");
             return;
@@ -90,9 +108,10 @@ public class MenuReparation
             return;
         }
 
+        // Terminer la réparation et remettre le véhicule disponible
         Reparation reparation = reparationsEnCours[index];
         reparation.EstTermine = true;
         reparation.Vehicule.EstDisponible = true;
         Console.WriteLine($"Réparation terminée ! Véhicule {reparation.Vehicule.Modele} remis disponible.");
     }
-}    
+}

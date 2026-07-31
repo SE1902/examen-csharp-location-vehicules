@@ -3,8 +3,16 @@ namespace examen_csharpV2.UI;
 using examen_csharpV2.Models;
 using examen_csharpV2.Service;
 
+/// <summary>
+/// Classe représentant le menu de gestion des formations de conduite.
+/// Permet d'inscrire des clients à des formations et de gérer l'obtention des permis.
+/// </summary>
 public class MenuFormation
 {
+    /// <summary>
+    /// Affiche le menu des formations et gère la navigation.
+    /// La boucle continue jusqu'à ce que l'utilisateur choisisse de revenir (0).
+    /// </summary>
     public void Afficher()
     {
         bool continuer = true;
@@ -39,9 +47,13 @@ public class MenuFormation
                     break;
             }
         }
-
     }
 
+    /// <summary>
+    /// Permet d'inscrire un client à une formation de conduite.
+    /// Demande le type de permis visé et le nombre de jours de formation.
+    /// Utilise un switch expression pour convertir le choix en type de permis.
+    /// </summary>
     private void AjouterFormation()
     {
         Console.WriteLine("\n=== INSCRIRE À UNE FORMATION ===");
@@ -60,8 +72,7 @@ public class MenuFormation
         string saisie = Console.ReadLine();
         if (saisie == "0") return;
         
-        int index;
-        if (!int.TryParse(saisie, out index))
+        if (!int.TryParse(saisie, out int index))
         {
             Console.WriteLine("Entrée invalide !");
             return;
@@ -74,7 +85,6 @@ public class MenuFormation
             return;
         }
         
-        
         Client client = DataStore.Clients[index];
 
         Console.WriteLine("Type de permis visé :");
@@ -84,6 +94,7 @@ public class MenuFormation
         Console.WriteLine("4. Permis D");
         Console.Write("Votre choix : ");
         
+        // Switch expression pour convertir le choix en type de permis
         string choixPermis = Console.ReadLine();
         string typePermis = choixPermis switch
         {
@@ -95,17 +106,21 @@ public class MenuFormation
         };
         
         Console.Write("Nombre de jours de formation : ");
-        int nbJours;
-        if (!int.TryParse(Console.ReadLine(), out nbJours))
+        if (!int.TryParse(Console.ReadLine(), out int nbJours))
         {
             Console.WriteLine("Nombre invalide !");
             return;
         }
+
         Formation formation = new Formation(client, typePermis, nbJours);
         DataStore.Formation.Add(formation);
         Console.WriteLine($"Formation pour le permis {typePermis} ajoutée avec succès !");
     }
 
+    /// <summary>
+    /// Affiche la liste de toutes les formations enregistrées dans le DataStore.
+    /// Utilise la méthode ToString() de chaque formation pour l'affichage.
+    /// </summary>
     private void AfficherFormations()
     {
         Console.WriteLine("\n=== LISTE DES FORMATIONS ===");
@@ -122,10 +137,16 @@ public class MenuFormation
         }
     }
 
+    /// <summary>
+    /// Permet de terminer une formation en cours.
+    /// Une fois la formation terminée, le permis est automatiquement ajouté
+    /// à la liste des permis du client s'il ne l'a pas déjà.
+    /// </summary>
     private void TerminerFormation()
     {
         Console.WriteLine("\n=== TERMINER UNE FORMATION ===");
 
+        // Filtrer uniquement les formations en cours
         List<Formation> formationsEnCours = new List<Formation>();
         for (int i = 0; i < DataStore.Formation.Count; i++)
         {
@@ -136,18 +157,17 @@ public class MenuFormation
             }
         }
     
-         if (formationsEnCours.Count == 0)
+        if (formationsEnCours.Count == 0)
         {
-        Console.WriteLine("Aucune formation en cours !");
-        return;
+            Console.WriteLine("Aucune formation en cours !");
+            return;
         }
         
         Console.Write("Choisissez la formation à terminer (numéro) : ");
         string saisie = Console.ReadLine();
         if (saisie == "0") return;
         
-        int index;
-        if (!int.TryParse(saisie, out index))
+        if (!int.TryParse(saisie, out int index))
         {
             Console.WriteLine("Entrée invalide !");
             return;
@@ -161,6 +181,8 @@ public class MenuFormation
         
         Formation formation = formationsEnCours[index];
         formation.EstTerminee = true;
+
+        // Ajouter le permis au client s'il ne l'a pas déjà
         if (!formation.Client.Permis.Contains(formation.TypePermis))
         {
             formation.Client.Permis.Add(formation.TypePermis);
@@ -168,6 +190,3 @@ public class MenuFormation
         Console.WriteLine($"Formation terminée ! {formation.Client.Nom} {formation.Client.Prenom} a maintenant le permis {formation.TypePermis} !");
     }
 }
-
-    
-    

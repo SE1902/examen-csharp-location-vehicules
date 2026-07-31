@@ -1,15 +1,37 @@
 namespace examen_csharpV2.UI;
 
+/// <summary>
+/// Classe représentant le menu principal de l'application.
+/// Point d'entrée de l'interface utilisateur qui regroupe tous les sous-menus.
+/// </summary>
 public class MenuPrincipal
 {
+    /// <summary>Menu de gestion des véhicules</summary>
     private MenuVehicule _menuVehicule = new MenuVehicule();
+    
+    /// <summary>Menu de gestion des clients</summary>
     private MenuClient _menuClient = new MenuClient();
+    
+    /// <summary>Menu de gestion des chauffeurs</summary>
     private MenuChauffeur _menuChauffeur = new MenuChauffeur();
+    
+    /// <summary>Menu de gestion des locations</summary>
     private MenuLocation _menuLocation = new MenuLocation();
+    
+    /// <summary>Menu de gestion des réparations</summary>
     private MenuReparation _menuReparation = new MenuReparation();
+    
+    /// <summary>Menu de gestion des contrôles techniques</summary>
     private MenuControletechnique _menuControleTechnique = new MenuControletechnique();
+    
+    /// <summary>Menu de gestion des formations</summary>
     private MenuFormation _menuFormation = new MenuFormation();
 
+    /// <summary>
+    /// Affiche le menu principal et gère la navigation vers les sous-menus.
+    /// Utilise un switch pour rediriger vers le bon menu selon le choix de l'utilisateur.
+    /// La boucle continue jusqu'à ce que l'utilisateur choisisse de quitter (0).
+    /// </summary>
     public void Afficher()
     {
         bool continuer = true;
@@ -59,12 +81,7 @@ public class MenuPrincipal
                 default:
                     Console.WriteLine("Option invalide !");
                     break;
-                
             }
-
         }
-            
-            
     }
-
 }
