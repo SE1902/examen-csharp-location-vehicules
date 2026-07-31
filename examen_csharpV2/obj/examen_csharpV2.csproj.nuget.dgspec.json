@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "/Users/souhailezzerqti/Desktop/csharp2/examen_csharpV2/examen_csharpV2/examen_csharpV2.csproj": {}
+    "C:\\Users\\PC\\examen-csharp-location-vehicules\\examen_csharpV2\\examen_csharpV2.csproj": {}
   },
   "projects": {
-    "/Users/souhailezzerqti/Desktop/csharp2/examen_csharpV2/examen_csharpV2/examen_csharpV2.csproj": {
+    "C:\\Users\\PC\\examen-csharp-location-vehicules\\examen_csharpV2\\examen_csharpV2.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/souhailezzerqti/Desktop/csharp2/examen_csharpV2/examen_csharpV2/examen_csharpV2.csproj",
+        "projectUniqueName": "C:\\Users\\PC\\examen-csharp-location-vehicules\\examen_csharpV2\\examen_csharpV2.csproj",
         "projectName": "examen_csharpV2",
-        "projectPath": "/Users/souhailezzerqti/Desktop/csharp2/examen_csharpV2/examen_csharpV2/examen_csharpV2.csproj",
-        "packagesPath": "/Users/souhailezzerqti/.nuget/packages/",
-        "outputPath": "/Users/souhailezzerqti/Desktop/csharp2/examen_csharpV2/examen_csharpV2/obj/",
+        "projectPath": "C:\\Users\\PC\\examen-csharp-location-vehicules\\examen_csharpV2\\examen_csharpV2.csproj",
+        "packagesPath": "C:\\Users\\PC\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\PC\\examen-csharp-location-vehicules\\examen_csharpV2\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/souhailezzerqti/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\PC\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net10.0"
@@ -38,7 +38,7 @@
           "auditLevel": "low",
           "auditMode": "all"
         },
-        "SdkAnalysisLevel": "10.0.100"
+        "SdkAnalysisLevel": "10.0.300"
       },
       "frameworks": {
         "net10.0": {
@@ -59,7 +59,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/Users/souhailezzerqti/.dotnet/sdk/10.0.103/PortableRuntimeIdentifierGraph.json",
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.302/PortableRuntimeIdentifierGraph.json",
           "packagesToPrune": {
             "Microsoft.CSharp": "(,4.7.32767]",
             "Microsoft.VisualBasic": "(,10.4.32767]",
